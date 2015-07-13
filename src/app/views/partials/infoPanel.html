@@ -1,0 +1,34 @@
+
+<md-content ng-controller="InfoPanelController as vm" class="md-padding">
+
+<!--  <md-progress-linear class="md-warn" md-mode="buffer" value="{{vm.startValue}}"
+                      md-buffer-value="{{vm.bufferValue}}"></md-progress-linear>
+
+  <md-radio-group ng-model="vm.reloadServer">
+    <md-radio-button value="Staging">Staging server</md-radio-button>
+    <md-radio-button value="Production">Production server</md-radio-button>
+  </md-radio-group>
+
+  <md-button class="md-raised md-warn" ng-click="vm.showAlert()">
+    Reload server
+  </md-button>-->
+
+  <h3 ng-hide="!vm.supported" class="">API not supported</h3>
+
+      <div id="bt-results" ng-hide="vm.supported">
+         <h3>Current Status</h3>
+         <div id="bs-status">
+            <ul>
+               <li>Is battery in charge? <span id="in-charge" class="bs-info">{{vm.incharge}}</span></li>
+               <li>Battery will be charged in <span id="charging-time" class="bs-info">{{vm.chargingtime}}</span> seconds</li>
+               <li>Battery will be discharged in <span id="discharging-time" class="bs-info">{{vm.dischargingtime}}</span> seconds</li>
+               <li>Current battery level: <span id="battery-level" class="bs-info">{{vm.batterylevel}}</span>/1</li>
+            </ul>
+         </div>
+      </div>
+
+      <h3>Log</h3>
+      <div id="log"></div>
+      <button id="clear-log" class="" ng-click="vm.clearlog()">Clear log</button>
+
+</md-content>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <meta name="author" content="Aurelio De Rosa">
+      <title>Ambient Light API Demo by Aurelio De Rosa</title>
+      <style>
+         *
+         {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+         }
+
+         body
+         {
+            max-width: 500px;
+            margin: 2em auto;
+            padding: 0 0.5em;
+            font-size: 20px;
+         }
+
+         h1
+         {
+            text-align: center;
+         }
+
+         .api-support
+         {
+            display: block;
+         }
+
+         .hidden
+         {
+            display: none;
+         }
+
+         .value
+         {
+            font-weight: bold;
+         }
+
+         .author
+         {
+            display: block;
+            margin-top: 1em;
+         }
+
+         .dark-theme
+         {
+            background-color: #000000;
+            color: #FFFFFF;
+         }
+
+         .classic-theme
+         {
+            background-color: #DDCBB4;
+            color: #996666;
+         }
+
+         .light-theme
+         {
+            background-color: #FFFFFF;
+            color: #000000;
+         }
+      </style>
+   </head>
+   <body>
+      <a href="http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/">Go back to the article</a>
+
+      <h1>Ambient Light API</h1>
+
+      <span id="al-unsupported" class="api-support hidden">API not supported</span>
+
+      <p>The current light is <span id="dl-value" class="value">null</span> lux.</p>
+
+      <small class="author">
+         Demo created by <a href="http://www.audero.it">Aurelio De Rosa</a>
+         (<a href="https://twitter.com/AurelioDeRosa">@AurelioDeRosa</a>).<br />
+         This demo is part of the <a href="https://github.com/AurelioDeRosa/HTML5-API-demos">HTML5 API demos repository</a>.
+      </small>
+
+      <script>
+         if (!('ondevicelight' in window)) {
+            document.getElementById('al-unsupported').classList.remove('hidden');
+         } else {
+            var lightValue = document.getElementById('dl-value');
+
+            window.addEventListener('devicelight', function(event) {
+               lightValue.innerHTML = Math.round(event.value);
+
+               if (event.value < 50) {
+                  document.body.className = 'dark-theme';
+               } else if (event.value < 10000) {
+                  document.body.className = 'classic-theme';
+               } else {
+                  document.body.className = 'light-theme';
+               }
+            });
+         }
+      </script>
+   </body>
+</html>
